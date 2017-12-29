@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>无标题文档</title>
+	<style type="text/css">
+		body{font-size:12px;}
+		table{border-collapse:collapse;}
+		table td{border:solid 1px #ddd; height:22px; text-align:center;word-break:break-all;}
+	</style>
+	<script type="text/javascript" src="ofixedtable.js"></script>
+</head>
+
+<body>
+<div style="width:400px;height:200px;overflow:auto;">
+	<table cellpadding="0" cellspacing="0" id="tbTest1" style="width:700px;">
+		<tr>
+			<td style="width:35px;">序号</td>
+			<td style="width:120px;">线别</td>
+			<td style="width:80px;">名称</td>
+			<td style="width:60px;">编号</td>
+			<td style="width:60px;">编号</td>
+			<td style="width:60px;">编号</td>
+			<td style="width:60px;">编号</td>
+			<td style="width:60px;">编号</td>
+			<td style="width:60px;">编号</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>沪蓉线</td>
+			<td>汉宜疏解线</td>
+			<td>132412</td>
+			<td>132412</td>
+			<td>132412</td>
+			<td>132412</td>
+			<td>132412</td>
+			<td>132412</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>长荆支线,焦柳线,荆东联络,荆东支,华能荆门热电专用</td>
+			<td>荆门</td>
+			<td>132412</td>
+			<td>132412</td>
+			<td>132412</td>
+			<td>132412</td>
+			<td>132412</td>
+			<td>132412</td>
+			<td></td>
+		</tr>
+	</table>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	
+	function fixed(){		
+		//调用固定表头
+		ofix1 = new oFixedTable('ofix1', document.getElementById('tbTest1'), {rows:1, cols:3, splitLineColor:'#000'});
+
+	}
+
+fixed();
+</script>
