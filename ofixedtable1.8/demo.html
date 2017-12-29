@@ -36,7 +36,7 @@
 	function test(num){
 		var box = document.getElementById('divBox' + num);
 		var strHtml = '<table class="tblist" id="tbTest' + num + '" cellpadding="0" cellspacing="0" style="text-align:center;width:880px;">';
-		for(var i=0; i<500; i++){
+		for(var i=0; i<200; i++){
 			if(i==0){
 				strHtml += '<tr class="trheader">';
 			} else {
@@ -47,10 +47,9 @@
 			for(var j=0; j<cellCount; j++){
 				if(j < cellCount-1){
 					if(j==1){
-					strHtml += '<td style="width:120px;">';
-
-					}else{
-					strHtml += '<td  style="width:80px;">';
+						strHtml += '<td style="width:120px;">';
+					} else {
+						strHtml += '<td  style="width:80px;">';
 					}
 					strHtml += '第' + (i+1) + '行第' + (j+1) + '列';
 				} else {
@@ -72,7 +71,9 @@
 
 	function fixed(){
 		//调用固定表头
-		ofix1 = new oFixedTable('ofix1', document.getElementById('tbTest1'), {rows:2, cols:2, background:'#f6f6f6', splitLineColor:'#f00',isFixedSize:true});
+		ofix1 = new oFixedTable('ofix1', document.getElementById('tbTest1'), {
+			rows:2, cols:2, background:'#f6f6f6', splitLineColor:'#f00', isFixedSize:true
+		});
 
 		ofix2 = new oFixedTable('ofix2', document.getElementById('tbTest2'), {
 			rows:3, cols:2, background:'#f8f8f8', showSplitLine:true, splitLineColor:'#00f', ieLowVersionEnabled: true,isFixedSize:true

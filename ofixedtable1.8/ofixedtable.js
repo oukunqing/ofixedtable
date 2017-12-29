@@ -238,7 +238,6 @@ oFixedTable.prototype.copyElement = function (row, rowOld, arrKey) {
     }
     for (var k in arrKey) {
         var key = arrKey[k];
-        console.log(rowOld[key]);
         if (rowOld[key] != null && rowOld[key] != undefined) {
             row[key] = rowOld[key];
         }

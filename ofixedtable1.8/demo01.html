@@ -6,30 +6,31 @@
 <style type="text/css">
 .tb{border-collapse:collapse; }
 .tb td{border:solid 1px #008000; text-indent:5px; height:24px; padding:0;}
-.tb thead{background:#ccc;}
+.tb thead{background:#dfe8f6;}
 .tb thead td{ vertical-align:middle; text-align:center; font-weight:bold; font-size:18px;}
 
 .tb tbody{}
 .tb tbody td{text-align:center;font-size:14px;}
 </style>
-<script type="text/javascript" src="ofixedtable.js"></script>
+<script type="text/javascript" src="ofixedtable.pack.js"></script>
 </head>
 
 <body>
-<input type="button" value="显示" onclick="show();" />
+<input type="button" value="锁定" onclick="fix();" />
 <input type="button" value="隐藏" onclick="hide();" />
+<input type="button" value="显示" onclick="show();" />
 <div style="width:700px; height:300px; overflow:auto;">
 <table cellpadding="0" cellspacing="0" border="0" class="tb" id="tb1" style="width:1000px;">
 	<thead>
 	<tr>
-		<td style="width:80px;">11</td>
-		<td style="width:80px;">12</td>
-		<td style="width:80px;">13</td>
+		<td>11</td>
+		<td>12</td>
+		<td>13</td>
 		<td>14</td>
 		<td rowspan="2">15</td>
-		<td style="width:80px;">16</td>
-		<td style="width:80px;">17</td>
-		<td style="width:80px;">18</td>
+		<td>16</td>
+		<td>17</td>
+		<td>18</td>
 	</tr>
 	<tr>
 		<td>21</td>
@@ -222,17 +223,22 @@
 </body>
 </html>
 <script type="text/javascript">
-var ofix1 = new oFixedTable('ofix1', document.getElementById('tb1'), {rows:5, cols:2, background:'#ccc', splitLineColor:'#00f'});
+var ofix1 = null;
 
-var tb = document.getElementById('tb1');
-
+function fix(){
+	ofix1 = new oFixedTable('ofix1', document.getElementById('tb1'), {rows:5, cols:2, background:'#dfe8f6', splitLineColor:'#00f'});
+}
 
 function show(){
-	ofix1.show();
+	if(ofix1 != null){
+		ofix1.show();
+	}
 }
 
 function hide(){
-	ofix1.hide();
+	if(ofix1 != null){
+		ofix1.hide();
+	}
 }
 
 </script>
