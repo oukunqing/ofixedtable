@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>无标题页</title>
+	<meta name="description" content="" />
+    <meta name="keywords" content="" />
+	<style type="text/css">
+	body{font-size:12px;}
+	table{ border-collapse:collapse;}
+	table td,table th{border:solid 1px #ccc; line-height:22px; height:22px; padding:0;}
+	
+	#tbheader td{background:#fff;}
+
+	.trheader{background:url(title_bg.png) repeat-x;}
+
+	.tblist{border-collapse:collapse; background:#fff;}
+	.tblist td{border:solid 1px #ccc; }
+	.tblist .split-column{border-right:solid 1px #00f; }
+	</style>
+	<script type="text/javascript" src="ofixedtable.js"></script>
+</head>
+<body>
+	固定表头、固定左边单元格 示例：
+	<br />
+	<input type="button" value="固定表头" onclick="fixed();" />
+	<input type="button" value="显示" onclick="show();" />
+	<input type="button" value="隐藏" onclick="hide();" />
+	<br />
+	<div id="divBox1" style="margin:20px 50px;overflow:auto;height:520px;width:450px;float:left;"></div>
+	</body>
+	<div id="divBox2" style="margin:20px 30px;overflow:auto;height:520px;width:450px;float:left;"></div>
+</body>
+</html>
+<script type="text/javascript">
+	function test(num){
+		var box = document.getElementById('divBox' + num);
+		var strHtml = '<table class="tblist" id="tbTest' + num + '" cellpadding="0" cellspacing="0" style="text-align:center;width:880px;">';
+		for(var i=0; i<200; i++){
+			if(i==0){
+				strHtml += '<tr class="trheader">';
+			} else {
+				//strHtml += '<tr style="' + (i % 2 == 0 ? ' background:#99bbe8;' : ' background:#fff;') + '">';
+				strHtml += '<tr lang="123" ondblclick="alert(this.lang);">';
+			}
+			var cellCount = 9;
+			for(var j=0; j<cellCount; j++){
+				if(j < cellCount-1){
+					if(j==1){
+						strHtml += '<td style="width:120px;">';
+					} else {
+						strHtml += '<td  style="width:80px;">';
+						/*
+						if(j==0){
+							strHtml += '<input type="checkbox" checked="checked" onchange="alert(111);" />';
+						}
+						*/
+					}
+					strHtml += '第' + (i+1) + '行第' + (j+1) + '列';
+				} else {
+					strHtml += '<td>';	
+				}
+				strHtml += '</td>';
+			}
+			strHtml += '</tr>';
+		}
+		strHtml += '</table>';
+		box.innerHTML = strHtml;
+		
+	}
+	test(1);
+	test(2);
+	
+	var ofix1 = null;
+	var ofix2 = null;
+
+	function fixed(){
+		//调用固定表头
+		ofix1 = new oFixedTable('ofix1', document.getElementById('tbTest1'), {
+			rows:2, cols:2, background:'#f6f6f6', splitLineColor:'#f00', isFixedSize:true
+		});
+
+		ofix2 = new oFixedTable('ofix2', document.getElementById('tbTest2'), {
+			rows:3, cols:2, background:'#f8f8f8', showSplitLine:true, splitLineColor:'#00f', ieLowVersionEnabled: true,isFixedSize:true
+		});
+	}
+
+	function show(){
+		ofix1.show();
+	}
+
+	function hide(){
+		ofix1.hide();
+	}
+</script>

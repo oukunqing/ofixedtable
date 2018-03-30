@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css"></style>
+	<script type="text/javascript" src="ofixedtable.js"></script>
+	<style type="text/css">
+		#tb1{}
+		#tb1 td{width:80px;}
+	</style>
+</head>
+<body>
+	<div style="width:500px;height:300px;overflow:auto;">
+	<table id="tb1" >
+	<thead>
+		<tr style="background:#dfe8f6;">
+			<td><input type="checkbox" checked="checked" onchange="alert(111);" /></td>
+			<td>1</td>
+			<td>标题1</td>
+			<td>标题2</td>
+			<td>标题3</td>
+			<td>标题4</td>
+			<td>标题5</td>
+		</tr>
+	</thead>
+		<tr>
+			<td><input type="checkbox" /></td>
+			<td>2</td>
+			<td>内容1</td>
+			<td>内容2</td>
+			<td>内容3</td>
+			<td>内容4</td>
+			<td>内容5</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" /></td>
+			<td>3</td>
+			<td>内容1</td>
+			<td>内容2</td>
+			<td>内容3</td>
+			<td>内容4</td>
+			<td>内容5</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" /></td>
+			<td>4</td>
+			<td>内容1</td>
+			<td>内容2</td>
+			<td>内容3</td>
+			<td>内容4</td>
+			<td>内容5</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" /></td>
+			<td>5</td>
+			<td>内容1</td>
+			<td>内容2</td>
+			<td>内容3</td>
+			<td>内容4</td>
+			<td>内容5</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" onchange="alert(666);" /></td>
+			<td>6</td>
+			<td>内容1</td>
+			<td>内容2</td>
+			<td>内容3</td>
+			<td>内容4</td>
+			<td>内容5</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" /></td>
+			<td>7</td>
+			<td>内容1</td>
+			<td>内容2</td>
+			<td>内容3</td>
+			<td>内容4</td>
+			<td>内容5</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" /></td>
+			<td>8</td>
+			<td>内容1</td>
+			<td>内容2</td>
+			<td>内容3</td>
+			<td>内容4</td>
+			<td>内容5</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" /></td>
+			<td>9</td>
+			<td>内容1</td>
+			<td>内容2</td>
+			<td>内容3</td>
+			<td>内容4</td>
+			<td>内容5</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" /></td>
+			<td>10</td>
+			<td>内容1</td>
+			<td>内容2</td>
+			<td>内容3</td>
+			<td>内容4</td>
+			<td>内容5</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" /></td>
+			<td>11</td>
+			<td>内容1</td>
+			<td>内容2</td>
+			<td>内容3</td>
+			<td>内容4</td>
+			<td>内容5</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" /></td>
+			<td>12</td>
+			<td>内容1</td>
+			<td>内容2</td>
+			<td>内容3</td>
+			<td>内容4</td>
+			<td>内容5</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" /></td>
+			<td>13</td>
+			<td>内容1</td>
+			<td>内容2</td>
+			<td>内容3</td>
+			<td>内容4</td>
+			<td>内容5</td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" /></td>
+			<td>14</td>
+			<td>内容1</td>
+			<td>内容2</td>
+			<td>内容3</td>
+			<td>内容4</td>
+			<td>内容5</td>
+		</tr>
+	</table>
+	</div>
+	<input type="button" onclick="getChecked();" value="获取选中" />
+	<input type="button" onclick="setChecked(5);" value="选中第5个" />
+	<input type="button" onclick="setChecked(6);" value="选中第6个" />
+	
+</body>
+</html>
+<script type="text/javascript">
+	function test(){
+		var tb = document.getElementById('tb1');
+		var arr = tb.getElementsByTagName('input');
+		var chb = null;
+
+		for(var i=0; i<arr.length; i++){
+			var obj = arr[i];
+			console.log(obj.type);
+			chb = arr[i];
+
+			chb.onclick = function(e){
+				alert(this.parentNode.parentNode.rowIndex);
+			};
+		}
+
+
+		ofix1 = new oFixedTable('ofix1', document.getElementById('tb1'), {rows:1, cols:2, splitLineColor:'#00f'});
+	
+	}
+
+	test();
+
+	function getChecked(){
+		var tb = document.getElementById('tb1');
+		var arr = tb.getElementsByTagName('input');
+
+		console.log('tb', tb.innerHTML);
+
+		for(var i=0; i<arr.length; i++){
+			var obj = arr[i];
+			if(obj.checked){
+				alert(obj.parentNode.parentNode.rowIndex);
+			}
+		}
+	}
+
+	function setChecked(i){
+		var tb = document.getElementById('tb1');
+		var arr = tb.getElementsByTagName('input');
+		if(arr[i] != null){
+			arr[i].focus();
+			arr[i].checked = true;
+			arr[i].blur();
+			//arr[i].change();
+		}
+	}
+</script>

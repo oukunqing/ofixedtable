@@ -1,19 +1,21 @@
 /*
-    oFixedTable 1.8
+    oFixedTable 1.9
     Author: 青梅煮酒 85079542 oukunqing@126.com
-    Update: 2018-03-30
+    Update: 2017-12-28
 */
-var ofixed_table_st = window.setTimeout;
-window.setTimeout = function (fRef, mDelay) {
-    if (typeof fRef == 'function') {
-        var argu = Array.prototype.slice.call(arguments, 2);
-        var f = (function () {
-            fRef.apply(null, argu);
-        });
-        return ofixed_table_st(f, mDelay);
-    }
-    return ofixed_table_st(fRef, mDelay);
-};
+if(typeof ofixed_table_st == 'undefined'){
+    var ofixed_table_st = window.setTimeout;
+    window.setTimeout = function (fRef, mDelay) {
+        if (typeof fRef == 'function') {
+            var argu = Array.prototype.slice.call(arguments, 2);
+            var f = (function () {
+                fRef.apply(null, argu);
+            });
+            return ofixed_table_st(f, mDelay);
+        }
+        return ofixed_table_st(fRef, mDelay);
+    };
+}
 
 function oFixedTable(id, obj, _cfg) {
     var _ = this;
@@ -234,6 +236,9 @@ oFixedTable.prototype.buildHead = function () {
         }
     }
     div.style.display = 'block';
+    
+    this.setSync(_.tbHead, _.obj);
+
     return hasHead;
 };
 
@@ -276,12 +281,10 @@ oFixedTable.prototype.buildLeft = function () {
     _.tbLeft.style.textAlign = _.obj.style.textAlign;
     _.tbLeft.style.width = 'auto';
 
-    var container = _.obj.tHead != null ? _.tbLeft.createTHead() : _.tbLeft;
     var hasLeft = false;
     for (var i = 0, rows = _.obj.rows.length; i < rows; i++) {
+        var row = _.tbLeft.insertRow(_.tbLeft.rows.length);
         var rowOld = _.obj.rows[i];
-        container = _.createTBody(_.tbLeft, rowOld) || container;
-        var row = container.insertRow(container.rows.length);
         _.copyElement(row, rowOld);
 
         row.style.cssText = (row.className == '' ? 'background:' + _.config.background + ';' : '') + rowOld.style.cssText;
@@ -334,6 +337,9 @@ oFixedTable.prototype.buildLeft = function () {
         }
     }
     div.style.display = 'block';
+    
+    this.setSync(_.tbLeft, _.obj);
+
     return hasLeft;
 };
 
@@ -412,6 +418,8 @@ oFixedTable.prototype.buildTopLeft = function () {
         }
     }
     div.style.display = 'block';
+
+    this.setSync(_.tbTopLeft, _.obj);
 };
 
 oFixedTable.prototype.isTHeadRow = function (row) {
@@ -470,6 +478,36 @@ oFixedTable.prototype.setBoxSize = function () {
             _.divLeft.style.height = (_.box.offsetHeight - sh) + 'px';
         }
     } catch (e) { }
+};
+
+oFixedTable.prototype.setSync = function (table, tableSync) {
+    var arr = this.getInput(table, ['checkbox', 'radio']);
+    var arrSync = this.getInput(tableSync, ['checkbox', 'radio']);
+    this.syncChecked(arr, arrSync);
+};
+
+oFixedTable.prototype.getInput = function (parent, types) {
+    var arr = parent.getElementsByTagName('input');
+    var list = [];
+    var inputType = ',' + types.join(',') + ',';
+    for (var i = 0, c = arr.length; i < c; i++) {
+        if (inputType.indexOf(',' + arr[i].type + ',') >= 0) {
+            list.push(arr[i]);
+        }
+    }
+    return list;
+};
+
+oFixedTable.prototype.syncChecked = function (arr, arrSync) {
+    for (var i = 0; i < arr.length; i++) {
+        arr[i].idx = i;
+        arrSync[i].idx = i;
+        arr[i].onclick = function(e){
+            var idx = this.idx;
+            arrSync[idx].checked = this.checked;
+        };
+        
+    }
 };
 
 oFixedTable.prototype.getTableId = function () {
