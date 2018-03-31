@@ -72,7 +72,7 @@ oFixedTable.prototype.setTableStyle = function () {
     var _ = this;
     _.borderStyle = 'solid ' + _.config.borderWidth + ' ' + _.config.splitLineColor;
     _.tableCellStyle = ' cellpadding="' + _.obj.cellPadding + '" cellspacing="' + _.obj.cellSpacing + '"';
-    _.tableOffset = ['', '', ''];
+    _.tableOffset = ['left:800px;', 'left:600px;top:100px;', 'left:600px;'];
 };
 
 oFixedTable.prototype._fixTable = function (_) {

@@ -6,7 +6,7 @@
 	<style type="text/css">
 	body{font-size:12px;}
 	</style>
-	<script type="text/javascript" src="ofixedtable.pack.js"></script>
+	<script type="text/javascript" src="ofixedtable.js"></script>
 	<style type="text/css">
 		#tb1{border-collapse:collapse;}
 		#tb1 td{}
@@ -17,18 +17,18 @@
 </head>
 <body>
 	<div style="width:500px;height:300px;overflow:auto;">
-	<table id="tb1" cellpadding="0px" cellspacing="0" class="table" width="800px">
+	<table id="tb1" cellpadding="0px" cellspacing="0" class="table" width="100%">
 	<thead>
 		<tr>
 			<td rowspan="2"><input type="checkbox" checked="checked" /></td>
-			<td rowspan="2">序号</td>
+			<td  style="background:#00f;" rowspan="2">序号</td>
 			<td>标题1</td>
 			<td>标题2</td>
 			<td>标题3</td>
 			<td>标题4</td>
 			<td>标题5</td>
 		</tr>
-		<tr>
+		<tr style="background:url('baidu_jgylogo3.gif') repeat;">
 			<td>标题1</td>
 			<td>标题2</td>
 			<td>标题3</td>
@@ -247,7 +247,7 @@
 			};
 		}
 		ofix1 = new oFixedTable('ofix1', document.getElementById('tb1'), {
-			rows:2, cols:2, splitLineColor:'#f00', background:'#dfe8f6', showSplitLine:false, borderWidth: '1px'
+			rows:2, cols:2, splitLineColor:'#f00', background:'#dfe8f6', showSplitLine:true, borderWidth: '1px'
 		});
 	}
 
