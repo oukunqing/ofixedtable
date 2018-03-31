@@ -537,8 +537,12 @@ oFixedTable.prototype.__setSync = function (obj, objOri) {
     }
 };
 
-oFixedTable.prototype.getInput = function (parent, types) {
-    var arr = parent.getElementsByTagName('input');
+oFixedTable.prototype.trim = function (str) {
+    return str.replace(/(^[\s]*)|([\s]*$)/g, '');
+};
+
+oFixedTable.prototype.getInput = function (parent, types, name) {
+    var arr = typeof name == 'string' && this.trim(name) != '' ? document.getElementsByName(name) : parent.getElementsByTagName('input');
     var list = [];
     var inputType = ',' + types.join(',') + ',';
     for (var i = 0, c = arr.length; i < c; i++) {
@@ -582,17 +586,17 @@ oFixedTable.prototype.isArray = function (arr) {
     return Object.prototype.toString.call(arr) === '[object Array]';
 };
 
-oFixedTable.prototype.setCheckBoxSync = function (argc) {
+oFixedTable.prototype.setCheckBoxSync = function (argc, name) {
     if (this.isArray(argc)) {
         for (var i = 0, c = argc.length; i < c; i++) {
             this.setOnchange(argc[i]);
         }
     } else if (typeof (argc) == 'object') {
         this.setOnchange(argc);
-    } else if (typeof (argc) == 'string' && argc.length > 0) {
+    } else if (typeof (argc) == 'string' && this.trim(argc) != '') {
         this.setOnchange(document.getElementById(argc));
     } else {
-        var arrChb = this.getInput(this.obj, ['checkbox', 'radio']);
+        var arrChb = this.getInput(this.obj, ['checkbox', 'radio'], name);
         for (var i = 0, c = arrChb.length; i < c; i++) {
             this.setOnchange(arrChb[i]);
         }
@@ -601,6 +605,31 @@ oFixedTable.prototype.setCheckBoxSync = function (argc) {
 
 oFixedTable.prototype.setSync = function (argc) {
     this.setCheckBoxSync(argc);
+};
+
+oFixedTable.prototype.setChecked = function(oper, name) {
+    var _ = this;
+    var arrOri = _.getInput(_.obj, ['checkbox', 'radio'], name);
+    var c = arrOri.length;
+    var isChecked = true;
+    switch(oper) {
+        case 1:
+        case 'All':
+            isChecked = true;
+            break;
+        case 2:
+        case 'Cancel':
+            isChecked = false;
+            break;
+        case 3:
+        case 'Reverse':
+            isChecked = 3;
+            break;
+    }
+    for(var i = 0; i < c; i++) {
+        arrOri[i].checked = 3 == isChecked ? !arrOri[i].checked : isChecked;
+    }
+    this.setCheckBoxSync('', name);
 };
 
 oFixedTable.prototype.getTableId = function () {

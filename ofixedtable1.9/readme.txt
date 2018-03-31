@@ -38,4 +38,5 @@ oFixedTable.js
     2) 复选框控件（html object）
     3) 复选框控件ID (string)
     4) 空参数（尽量不用空参数）
+    增加复选框选择：全选、取消、反选，需要调用 .setChecked(oper, name) oper: 1-全选，2-取消，3-反选； name: checkbox的 name属性名称
     
