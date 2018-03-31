@@ -27,3 +27,16 @@
 修正表头列未锁定的Bug
 
 1.8 修正表格含有thead时的样式丢失问题，以及行数设置问题，修正thead/tbody行归属问题
+
+1.9 移除tbTopLeft的边框线
+    修正表格cellpadding/cellspacing的设置问题
+    修复Firefox下的padding导致的错位问题
+    修复thead复制没有底部分割线的问题
+    修复thead复制时无背景色的问题
+    增加复选框同步功能（如果是JS代码设置复选框选中，需要调用 .setCheckBoxSync()方法）
+    .setCheckBoxSync 方法参数说明：4种参数
+    1) 复选框控件（html object）数组
+    2) 复选框控件（html object）
+    3) 复选框控件ID (string)
+    4) 空参数（尽量不用空参数）
+    增加复选框选择：全选、取消、反选，需要调用 .setChecked(oper, name) oper: 1-全选，2-取消，3-反选； name: checkbox的 name属性名称
