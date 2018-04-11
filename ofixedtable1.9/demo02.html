@@ -2,22 +2,19 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Document</title>	
 	<style type="text/css">
-	body{font-size:12px;}
+	body{margin: 10px;}
 	</style>
 	<script type="text/javascript" src="ofixedtable.js"></script>
 	<style type="text/css">
-		#tb1{border-collapse:collapse;}
-		#tb1 td{}
-
-		.table{border-collapse:collapse;}
-		.table td{border:solid 1px #99bbe8; text-align:center; padding:5px;}
+		.tblist{border-collapse:collapse;}
+		.tblist td{border:solid 1px #99bbe8; text-align:center; padding:10px !important;}
 	</style>
 </head>
 <body>
 	<div style="width:500px;height:300px;overflow:auto;">
-	<table id="tb1" cellpadding="0px" cellspacing="0" class="table" width="100%">
+	<table id="tb1" cellpadding="0px" cellspacing="0" class="tblist" width="100%">
 	<thead>
 		<tr>
 			<td rowspan="2"><input type="checkbox" checked="checked" /></td>
@@ -251,8 +248,9 @@
 		});
 	}
 
-
-	test();
+	window.setTimeout(function(){
+		test();
+	}, 2000);
 
 	function getChecked(){
 		var tb = document.getElementById('tb1');

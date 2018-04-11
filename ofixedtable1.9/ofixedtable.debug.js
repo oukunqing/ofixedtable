@@ -40,7 +40,8 @@ function oFixedTable(id, obj, _cfg) {
         borderWidth: _cfg.borderWidth || '1px',
         //IE6/7/8是否启用锁定表头功能，默认不启用
         ieLowVersionEnabled: _cfg.ieLowVersionEnabled || false,
-        isFixedSize: _cfg.isFixedSize || false
+        isFixedSize: _cfg.isFixedSize || false,
+        isBootstrap: _cfg.isBootstrap || null
     };
     //需要复制的元素或事件
     _.arrKey = ['className', 'lang', 'ondblclick', 'onclick', 'onmouseover', 'onmouseout'];
@@ -57,6 +58,8 @@ function oFixedTable(id, obj, _cfg) {
     
     _.setTableStyle();
 
+    _.hasBootstrapCss = typeof _.config.isBootstrap == 'boolean' ? _.config.isBootstrap : _.checkBootstrap();
+
     //判断 IE6/IE7/IE8 是否启用锁定功能
     if (!_.ieLowVersion || _.config.ieLowVersionEnabled) {
         if (_.box != null) {
@@ -67,6 +70,17 @@ function oFixedTable(id, obj, _cfg) {
         window.setTimeout(_._fixTable, 10, _);
     }
 }
+
+oFixedTable.prototype.checkBootstrap = function(){    
+    var arr = document.getElementsByTagName('link');
+    for(var i = 0, c = arr.length; i < c; i++) {
+        var href = (arr[i].href || '').toLowerCase();
+        if(href.indexOf('bootstrap') >= 0) {
+            return true;
+        }
+    }
+    return false;
+};
 
 oFixedTable.prototype.setTableStyle = function () {
     var _ = this;
@@ -476,10 +490,13 @@ oFixedTable.prototype.getCellWidth = function (cell, isHead) {
         return parseInt(_.getElementStyle(cell, 'width'), 10);
     } else {
         var ow = cell.offsetWidth, cellWidth;
+        if (_.hasBootstrapCss) {
+            return ow;
+        }
         var pl = _.parseVal(_.getElementStyle(cell, 'paddingLeft')), pr = _.parseVal(_.getElementStyle(cell, 'paddingRight'));
         var bl = _.parseVal(_.getElementStyle(cell, 'borderLeftWidth')), br = _.parseVal(_.getElementStyle(cell, 'borderRightWidth'));
         //注意：在Firefox下可以获取到borderRightWidth，但获取不到borderLeftWidth
-        //这里宽度只要减去右边的就可以了
+        //这里边框宽度只要减去右边的就可以了
         cellWidth = ow - pl - pr - br;
 
         return cellWidth;

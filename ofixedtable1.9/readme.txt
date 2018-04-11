@@ -27,7 +27,7 @@ oFixedTable.js
 
 1.8 修正表格含有thead时的样式丢失问题，以及行数设置问题，修正thead/tbody行归属问题
 
-1.9 移除tbTopLeft的边框线
+1.9 移除tb_top_left的底部边框线
     修正表格cellpadding/cellspacing的设置问题
     修复Firefox下的padding导致的错位问题
     修复thead复制没有底部分割线的问题
@@ -39,4 +39,7 @@ oFixedTable.js
     3) 复选框控件ID (string)
     4) 空参数（尽量不用空参数）
     增加复选框选择：全选、取消、反选，需要调用 .setChecked(oper, name) oper: 1-全选，2-取消，3-反选； name: checkbox的 name属性名称
+    解决启用bootstrap.css之后，表格列宽获取的问题，目前采用的方法是屏蔽，虽解决了问题，但不明所以，留待后续彻解。临时解决方案：在第3个参数(config)中指定 isBootstrap:true，或者也可以不指定，js会自动检测页面上有没有启用文件名为bootstrp的css（如果启用bootstrap.css，但文件名不是bootstrap，那请指定isBootstrap参数）。
+
+
     
