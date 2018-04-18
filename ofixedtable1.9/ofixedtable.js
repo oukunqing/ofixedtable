@@ -1,7 +1,7 @@
 /*
     oFixedTable 1.9
     Author: 青梅煮酒 85079542 oukunqing@126.com
-    Update: Update: 2018-04-02
+    Update: Update: 2018-04-18
 */
 if (typeof ofixed_table_st == 'undefined') {
     var ofixed_table_st = window.setTimeout;
@@ -587,9 +587,17 @@ oFixedTable.prototype.setCheckClickSyncEvent = function (arr, arrOri, prefix) {
             arr[i].id = prefix + id;
         }
         arr[i].idx = i;
+        var func = arrOri[i].onclick || null;
         arr[i].onclick = function (e) {
             var idx = this.idx;
             arrOri[idx].checked = this.checked;
+            if(typeof func == 'function') {
+                if (arrOri[idx].fireEvent) {
+                    arrOri[idx].fireEvent('onclick');
+                } else {
+                    arrOri[idx].onclick();
+                }
+            }
         };
     }
 };
