@@ -86,7 +86,7 @@ oFixedTable.prototype.setTableStyle = function () {
     var _ = this;
     _.borderStyle = 'solid ' + _.config.borderWidth + ' ' + _.config.splitLineColor;
     _.tableCellStyle = ' cellpadding="' + _.obj.cellPadding + '" cellspacing="' + _.obj.cellSpacing + '"';
-    _.tableOffset = ['left:800px;', 'left:600px;top:100px;', 'left:600px;'];
+    _.tableOffset = ['', '', ''];
 };
 
 oFixedTable.prototype._fixTable = function (_) {
@@ -155,13 +155,6 @@ oFixedTable.prototype._getControl = function (id) {
     return arr;
 };
 
-oFixedTable.prototype.setRowBackground = function(row, background){
-    if(row.className == '' && background != '#fff' && background != '#ffffff'){
-        return  'background:' + background + ';';
-    }
-    return '';
-};
-
 oFixedTable.prototype.buildHead = function () {
     var _ = this;
     if (_.config.rows <= 0) {
@@ -228,7 +221,7 @@ oFixedTable.prototype.buildHead = function () {
                     var row = rowOld.cloneNode(true);
                     _.copyElement(row, rowOld);
 
-                    row.style.cssText = _.setRowBackground(row, _.config.background) + row.style.cssText;
+                    row.style.cssText = (row.className == '' ? 'background:' + _.config.background + ';' : '') + row.style.cssText;
                     row.style.height = rowOld.offsetHeight + 'px';
                     row.style.width = rowOld.offsetWidth + 'px';
 
@@ -247,7 +240,7 @@ oFixedTable.prototype.buildHead = function () {
 
                 _.copyElement(row, rowOld);
 
-                row.style.cssText = _.setRowBackground(row, _.config.background) + rowOld.style.cssText;
+                row.style.cssText = (row.className == '' ? 'background:' + _.config.background + ';' : '') + rowOld.style.cssText;
                 row.style.height = rowOld.offsetHeight + 'px';
                 row.style.width = rowOld.offsetWidth + 'px';
 
@@ -335,7 +328,7 @@ oFixedTable.prototype.buildLeft = function () {
         var row = container.insertRow(container.rows.length);
         _.copyElement(row, rowOld);
 
-        row.style.cssText = _.setRowBackground(row, _.config.background) + rowOld.style.cssText;
+        row.style.cssText = (row.className == '' ? 'background:' + _.config.background + ';' : '') + rowOld.style.cssText;
         row.style.height = rowOld.offsetHeight + 'px';
 
         //除去被合并的单元格
@@ -428,7 +421,7 @@ oFixedTable.prototype.buildTopLeft = function () {
 
         _.copyElement(row, rowOld);
 
-        row.style.cssText = _.setRowBackground(row, _.config.background) + rowOld.style.cssText;
+        row.style.cssText = (row.className == '' ? 'background:' + _.config.background + ';' : '') + rowOld.style.cssText;
         row.style.height = rowOld.offsetHeight + 'px';
 
         var cut = _.arrCellCut[i] || 0;
