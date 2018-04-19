@@ -9,7 +9,7 @@
 	<script type="text/javascript" src="ofixedtable.js"></script>
 	<style type="text/css">
 		.tblist{border-collapse:collapse;}
-		.tblist td{border:solid 1px #99bbe8; text-align:center; padding:10px !important;}
+		.tblist td{border:solid 1px #99bbe8; text-align:center; padding:5px !important;}
 	</style>
 </head>
 <body>
@@ -240,7 +240,8 @@
 			chb = arr[i];
 			
 			chb.onclick = function(e){
-				alert(this.parentNode.parentNode.rowIndex + 1);
+				var con = this.parentNode.parentNode.cells[1].innerHTML;
+				alert('选中的复选框内容： ' + con);
 			};
 		}
 		ofix1 = new oFixedTable('ofix1', document.getElementById('tb1'), {
@@ -261,7 +262,8 @@
 		for(var i=0; i<arr.length; i++){
 			var obj = arr[i];
 			if(obj.checked){
-				alert('选中： 第 ' + (obj.parentNode.parentNode.rowIndex + 1) + ' 行的复选框');
+				var con = obj.parentNode.parentNode.cells[1].innerHTML;
+				alert('选中的复选框内容： ' + con);
 			}
 		}
 	}
