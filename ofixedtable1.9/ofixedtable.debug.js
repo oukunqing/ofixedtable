@@ -539,6 +539,7 @@ oFixedTable.prototype.setCheckBoxSyncEvent = function (table, tableSync, prefix)
         if (typeof callback == 'function') {
             arrOri[i].change_callback = callback;
         }
+        /*
         arrOri[i].onchange = function (e) {
             var idx = this.idx;
             _.__setSync(arrHead[idx], this);
@@ -548,7 +549,17 @@ oFixedTable.prototype.setCheckBoxSyncEvent = function (table, tableSync, prefix)
             if (typeof this.change_callback == 'function') {
                 this.change_callback();
             }
-        };
+        };*/
+        arrOri[i].addEventListener('change',function (e) {
+            var idx = this.idx;
+            _.__setSync(arrHead[idx], this);
+            _.__setSync(arrLeft[idx], this);
+            _.__setSync(arrTopLeft[idx], this);
+            // 触发原有的onchange事件
+            if (typeof this.change_callback == 'function') {
+                this.change_callback();
+            }
+        }, false);
     }
     this.setCheckClickSyncEvent(arrHead, arrOri, 'tb_head_');
     this.setCheckClickSyncEvent(arrLeft, arrOri, 'tb_left_');
