@@ -40,6 +40,6 @@ oFixedTable.js
     4) 空参数（尽量不用空参数）
     增加复选框选择：全选、取消、反选，需要调用 .setChecked(oper, name) oper: 1-全选，2-取消，3-反选； name: checkbox的 name属性名称
     解决启用bootstrap.css之后，表格列宽获取的问题，目前采用的方法是屏蔽，虽解决了问题，但不明所以，留待后续彻解。临时解决方案：在第3个参数(config)中指定 isBootstrap:true，或者也可以不指定，js会自动检测页面上有没有启用文件名为bootstrp的css（如果启用bootstrap.css，但文件名不是bootstrap，那请指定isBootstrap参数）。
-    
+    增加colStartRowIndex参数，当表格顶部的行有合并所有列的情况下，列宽计算从指定的行开始
 
     

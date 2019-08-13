@@ -33,6 +33,7 @@ function oFixedTable(id, obj, _cfg) {
         fixHead: typeof _cfg.fixHead != 'undefined' ? _cfg.fixHead : true,
         rows: _cfg.rows == undefined ? 1 : _cfg.rows,
         cols: _cfg.cols || 0,
+        colStartRowIndex: typeof _cfg.colStartRowIndex != 'undefined' ? _cfg.colStartRowIndex : 0,
         background: _cfg.background || '#fff',
         zindex: _cfg.zindex || 9999,
         showSplitLine: typeof _cfg.showSplitLine == 'boolean' ? _cfg.showSplitLine : true,
@@ -156,7 +157,7 @@ oFixedTable.prototype._getControl = function (id) {
 };
 
 oFixedTable.prototype.setRowBackground = function(row, background){
-    if(row.className == '' && background != '#fff' && background != '#ffffff'){
+    if(row.className == '' && background != '#fff' && background != '#fff'){
         return  'background:' + background + ';';
     }
     return '';
@@ -372,8 +373,10 @@ oFixedTable.prototype.buildLeft = function () {
                     }
                 }
 
-                //指定列宽
-                cell.style.width = _.getCellWidth(oldCell) + 'px';
+                if(i >= _.config.colStartRowIndex) {
+                    //指定列宽
+                    cell.style.width = _.getCellWidth(oldCell) + 'px';
+                }
 
                 if (_.config.showSplitLine && (j == _.config.cols - cut - 1)) {
                     cell.style.borderRight = _.borderStyle;
