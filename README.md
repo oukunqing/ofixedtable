@@ -30,7 +30,7 @@
 
 1.9 移除tbTopLeft的边框线
     修正表格cellpadding/cellspacing的设置问题
-    修复Firefox下的padding导致的错位问题
+  　修复Firefox下的padding导致的错位问题
     修复thead复制没有底部分割线的问题
     修复thead复制时无背景色的问题
     增加复选框同步功能（如果是JS代码设置复选框选中，需要调用 .setCheckBoxSync()方法）
@@ -40,4 +40,5 @@
     3) 复选框控件ID (string)
     4) 空参数（尽量不用空参数）
     增加复选框选择：全选、取消、反选，需要调用 .setChecked(oper, name) oper: 1-全选，2-取消，3-反选； name: checkbox的 name属性名称
+    
     增加colStartRowIndex参数，当表格顶部的行有合并所有列的情况下，列宽计算从指定的行开始
